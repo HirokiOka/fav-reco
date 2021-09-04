@@ -11,12 +11,11 @@ ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
 ACCESS_TOKEN_SECRET = os.environ.get("ACCESS_TOKEN_SECRET")
 
 auth = tp.OAuthHandler(CONSUMER_API_KEY, CONSUMER_SECRET_API_KEY)
-auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+# auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tp.API(auth)
 
 user_id = "@odmishien"
 fav_tweets = api.favorites(user_id, count=50)
-
 
 print("user:" + user_id)
 print("favorite tweets:")

@@ -1,0 +1,89 @@
+/* Show it is fixed to the top */
+/* body {
+    min-height: 75rem;
+    padding-top: 4.5rem;
+     
+  } */
+
+  html {
+    scroll-behavior: smooth;
+}
+
+body {
+  background-color:#F2EFE5;
+}
+
+.navBar{
+  background-color:#150201;
+}
+
+.backgroundImg {
+  height: 100vh;
+  /* display: flex; */
+  align-items: center; /* 縦方向中央揃え */
+  justify-content: center; /* 横方向中央揃え */
+  flex-direction: column;
+  background-image: url(../img/image_top.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* opacity:0.5; */
+}
+@media screen and (max-width: 320px) and (max-width: 480px) {
+  .backgroundImg {
+    width: 320px;
+    height: 480px;
+    display: flex;
+    align-items: center; /* 縦方向中央揃え */
+    justify-content: center; /* 横方向中央揃え */
+    flex-direction: column;
+    background-image: url(../img/tweetBookstore.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.catchCopy{
+  background-color: rgba(0,0,0,0.5);
+  position:absolute;
+  width:60%;
+  height:50%;
+  top:35vh;
+  left:3vw;
+  padding:30px;
+}
+
+
+
+/***追従するトップへ戻るボタン***/
+#page-top {
+  position: fixed;
+  right: 5px;
+  bottom: 20px;
+  height: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transform: rotate(90deg);
+  font-size: 90%;
+  line-height: 1.5rem;
+  color: #737373;
+  padding: 0 0 0 35px;
+  border-top: solid 1px;
+}
+#page-top::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -1px;
+  left: 0px;
+  width: 15px;
+  border-top: solid 1px;
+  transform: rotate(35deg);
+  transform-origin: left top;
+}
+/***トップへ戻るボタンここまで***/
+
+.footer{
+  background-color:#150201;
+}

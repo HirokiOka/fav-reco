@@ -1,21 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>fav-reco</title>
-    </head>
-    <body>
-      <header>
-        <ul>
-          <li><a href="/">HOME</a></li>
-          <li><a href="/login">LOGIN</a></li>
-        </ul>
-      </header>
-      <h1>{{twitter_id}} favorites</h1>
-      {% for tweet in fav_tweets %}
-        <li>{{ tweet.text }}</li>
-      {% endfor %}
-    </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>fav-reco</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/resultStyle.css">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="appRoot">
+    <app-header  :link1 = "appLink1" :link2 = "appLink2" :logo = "appTitle"  :link3 = "appLink3" :link4 = "appLink4"></app-header>
+      <h1>recommended book</h1>
+      <h2>{{ book_info.title }}</h2>
+      <img src={{ book_info.image }} alt="book image">
+      <p>{{ book_info.caption }}</p>
+      <p>発売日：{{ book_info.sales_date }}</p>
+      <p>出版社：{{ book_info.publisher }}</p>
+      <a href={{ item_url }}>楽天で購入</a>
+  </div>
+
+
+  
+  <!-- 無駄にVue.jsの練習がてらVueで書く -->
+  <script type='text/x-template' id='header'>
+   <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> -->
+    <nav class="navbar navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">[[logo]]</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item active">
+              <a class="nav-link" aria-current="page" href="/">[[link1]]</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">[[link2]]</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">[[link3]]</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">[[link4]]</a>
+            </li>
+          </ul>
+          <!-- <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form> -->
+        </div>
+      </div>
+    </nav>
+</script>
+<script src="../static/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+
 </html>
