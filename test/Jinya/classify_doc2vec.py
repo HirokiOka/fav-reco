@@ -13,7 +13,7 @@ titles = df["title"]
 
 # モデルを読み込む
 # モデルは絶対パスで指定してください
-m = Doc2Vec.load('/Users/jinya/Desktop/fav-reco/test/Jinya/models/Doc2Vec.model')
+m = Doc2Vec.load('/Users/jinya/Desktop/fav-reco/test/Jinya/models/Doc2Vec_window8.model')
 
 # ベクトルをリストに格納
 vectors_list = [m.docvecs[n] for n in range(len(m.docvecs))]

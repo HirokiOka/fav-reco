@@ -10,6 +10,7 @@ import tweepy as tp
 import pprint
 
 
+
 # MeCabの辞書にNEologdを指定。
 # mecabは携帯素解析用、wakatiは分かち書き用
 mecab = MeCab.Tagger('-d /usr/local/lib/mecab/dic/mecab-ipadic-neologd')
@@ -49,7 +50,7 @@ def get_favs(user_id):
     auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
     api = tp.API(auth)
 
-    fav_tweets = api.favorites(user_id, count=10)
+    fav_tweets = api.favorites(user_id, count=50)
 
     url_pattern = re.compile("https://")
     fav_tweet_texts = [fav_tweet.text for fav_tweet in fav_tweets if not url_pattern.search(fav_tweet.text)]
@@ -58,7 +59,7 @@ def get_favs(user_id):
     # fav_row =  pd.Series([user_id, "likes", fav_tweets_text], index=df.columns)
     return fav_tweet_texts
 
-m = Doc2Vec.load('/Users/jinya/Desktop/fav-reco/test/Jinya/models/Doc2Vec.model')
+m = Doc2Vec.load('/Users/jinya/Desktop/fav-reco/test/Jinya/models/Doc2Vec_window8.model')
 
 df = pd.read_csv('/Users/jinya/Desktop/fav-reco/test/Jinya/data/aozora.csv')
 titles = df["title"]
@@ -73,9 +74,31 @@ for text in wakati_tweets:
     text_list = text.split(' ')
     sentences.append(text_list)
 
+import numpy as np
+def cal_cos_similarity(q, d):
+    q = np.array(q)
+    d = np.array(d)
+    return np.dot(q, d) / (np.linalg.norm(q) * np.linalg.norm(d))
+
+# import matplotlib.pyplot as plt
+# epochs = [5,10,15,20,30,40,50,60,75,100]
+# sims = []
+# for e in epochs:
+#     v1 = m.infer_vector(sentences[3], epochs=e)
+#     v2 = m.infer_vector(sentences[3], epochs=e)
+#     sims.append(cal_cos_similarity(v1,v2))
+# height = sims
+# left = epochs
+# plt.plot(left, height)
+# plt.show()
+
 reccomend = []
 for idx, s in enumerate(sentences):
-    most_similar = m.docvecs.most_similar([m.infer_vector(s)], topn=1)
+#     v1 = m.infer_vector(s, epochs=30)
+#     v2 = m.infer_vector(s, epochs=30)
+#     print(cal_cos_similarity(v1,v2))
+
+    most_similar = m.docvecs.most_similar([m.infer_vector(s, epochs=40)], topn=1)
     reccomend.append([tweets[idx], titles[most_similar[0][0]]])
 
 pprint.pprint(reccomend)

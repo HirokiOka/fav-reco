@@ -157,8 +157,8 @@ for text in texts:
 
 # Doc2Vecモデルに重要単語リストall_titleを渡します。
 documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(sentences)]
-model = Doc2Vec(documents, vector_size=100, window=5, min_count=1)
-model.save("Doc2Vec.model")
+model = Doc2Vec(documents, vector_size=100, window=8, min_count=1)
+model.save("Doc2Vec_window8.model")
 
 # 結果と照らし合わせやすいように、番号と作品の一覧を表示
 # for i, doc in enumerate(documents):
